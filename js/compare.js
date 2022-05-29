@@ -64,11 +64,11 @@ function SetCarToCompare(el, carClass) {
 }
 
 function ShowCompare() {
-    if (carArr.length !== 2 ) {
+    if (carArr.length !== 2) {
         alert("Precisa marcar 2 carros para apresentar a comparação");
         return;
     }
-    
+
 
     UpdateCompareTable();
     document.getElementById("compare").style.display = "block";
@@ -79,14 +79,28 @@ function HideCompare() {
 }
 
 function UpdateCompareTable() {
-    
-    for (let i = 0; i < carArr.length; i++){
+
+    for (let i = 0; i < carArr.length; i++) {
         const car = carArr[i];
+
         let tdImage = document.getElementById("compare_image_" + i);
-        console.log({car, tdImage});
         tdImage.innerHTML = `<img src="${car.image}" alt="${car.nome}" width="150">`;
-        let tdModelo = document.getElementById("compare_modelo_" + i);
-        tdModelo.innerText = car.nome;
-        
+
+        setData("modelo", i, car.nome);
+        setData("alturacacamba", i, car.alturaCacamba);
+        setData("alturaveiculo", i, car.alturaVeiculo);
+        setData("alturasolo", i, car.alturaSolo);
+        setData("capacidadecarga", i, car.capacidadeCarga);
+        setData("motor", i, car.motor);
+        setData("potencia", i, car.potencia);
+        setData("volumecacamba", i, car.volumeCacamba);
+        setData("roda", i, car.roda);
+        setData("preco", i, car.preco);
     }
 }
+
+function setData(idText, i, displayText) {
+    let tdModelo = document.getElementById(`compare_${idText}_${i}`);
+    tdModelo.innerText = displayText;
+}
+
